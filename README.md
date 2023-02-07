@@ -11,9 +11,7 @@ The executable is a malware recognized by virusTotal because it was detected by 
 
 ## Indicators of Compromise 
 
-
 ## Mitigations
-
 - Using further analysis techniques, is what can help to provide the solution against this kind of malware.
 
 ## Evidence
@@ -28,11 +26,11 @@ Using Dependency Walker on the `.EXE`, further revealed that the file is packed 
 # Lab 1-4
 
 ## Executive Summary
-The file is a portable executable, more specifically a `WIN32.EXE` file. There is no indication that the file is either packed or obfuscated using PEiD utility software tool and also PEiD provided me with more information that the file was written and compiled using Microsoft Visual C++ 6.0. In addition, using PEview the file header indicates that this application was created in August of 2019. Using Dependency Walker to open the file i saw that the file was composed of three dynamic link library it uses in it operation namely `kernel32`, `ADVAPI32` and `MSCRVT`. The imports from kernel32.dll shows that file loads data from the resource section by importing the functions `LoadResource` , `FindResource` , `SizeOfResource`, writes a file to disk using the function `CreateFile`, `WriteFile`, and executes a file on disk of infected machines using `WinExec` function. Also the imports from ADVAPI32 indicates that the file posses priviliged related information due to the priviliged functions associated with the imports. In addition this file will updates itself with other malware `updater.exe` on infected machines or network because running strings command on this PE file it shows that it connects to the website `www.malwareanalysisbook.com/updater.exe` a  network-based indicator getting other files which may be malwares from the internet through the URL. Lastly using PEview it can be seen that this PE file has one resource at SECTION.rsrc namely`BIN 0065 0409` and this file file can be demonstrated using Resouurce HAcker too tool to save itits binary save its sbinary into executeable;then using PEiD utility tool it confirms that this file resource file is neither packed nor obfuscated. running strings through it it c been 
+The file is a portable executable, more specifically a `WIN32.EXE` file. There is no indication that the file is either packed or obfuscated using PEiD utility software tool and also PEiD provided me with more information that the file was written and compiled using Microsoft Visual C++ 6.0. In addition, using PEview the file header indicates that this application was created in August of 2019. Using Dependency Walker to open the file I saw that the file was composed of three dynamic link library it uses in it operation namely `kernel32`, `ADVAPI32` and `MSCRVT`. The imports from kernel32.dll shows that file loads data from the resource section by importing the functions `LoadResource` , `FindResource` , `SizeOfResource`, writes a file to disk using the function `CreateFile`, `WriteFile`, and executes a file on disk of infected machines using `WinExec` function. Also the imports from ADVAPI32 indicates that the file posses priviliged related information due to the priviliged functions associated with the imports. In addition this file will updates itself with other malware `updater.exe` on infected machines or network because running strings command on this PE file, revealed that it connects to the website `www.malwareanalysisbook.com/updater.exe` a  network-based indicator to obtain other/additional files through the URL which may be malwares from the. Lastly using PEview it can be seen that this PE file has one resource at SECTION.rsrc namely`BIN 0065 0409` and this file can be demonstrated using Resource HAcker tool to save its sbinary into executable format;then using PEiD utility tool it confirms that this resource file is neither packed nor obfuscated and running `string` function through it can been seen that. Also uploading the saved binary both on virusTotal and PEview shows the the compilation date for this hidden file is 2011, and the data section for this saved file where the DLL are present have similar functions to the lab01-4 executable file
 
 ## Indicators of Compromise
 
-**Compilation Date :** AUGUST 2019
+**Compilation Date (ASSUMED):** AUGUST 2019
 
 **MD5 Hash (EXE):**	625ac05fd47adc3c63700c3b30de79ab
 
@@ -63,4 +61,4 @@ Opening the unpacked`.EXE` using BinText GUI, suggests that infected machines wi
 - BinText: A sysinternals GUI program that shows the strings in a program
 - PEView: Shows useful summary information about the portable executable(s), including compile time and imports
 - Dependency Walker: For showing imports
-
+- strings: A sysinternals command line program for showing the characters in an executable.
