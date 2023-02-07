@@ -1,13 +1,13 @@
 # Week 1 - Simple Static Analysis
 
-This Week's Lab focus was on the use of file hashes as a technique for identifying malware samples. Additionally, submitted sample of malware files or hashes by uploading these file via Google's VirusTotal website to scan the files with a variety of antivirus programs embedded in the website. Furthermore used BinText GUI  to search for ASCII and Unicode `strings` inside of a binary and also discovered how to use PEiD to determine whether the binary of a malware samples executable or linked library file is compressed to conceal its contents. Lastly exploration of Windows system tools that are used by portable executable including libraries that get dynamically linked and which functions are imported was also learnt.
+This Week's Lab focus was on the use of file hashes as a technique to recognize whether an executable file is a malware. This was achieved by submitting or uploading the executable file or hashes via Google's VirusTotal website to scan the files with a variety of antivirus programs embedded in the website. Furthermore used BinText GUI  to search for ASCII and Unicode `strings` inside the binary of the executable file and also discovered how to use PEiD to determine whether the binary of a malware sample(s) executable or linked library file is compressed to conceal its contents as a countermeasure; so that it can not analyzed for mitigation measures to be implemented against it by a malware analyst. Lastly exploration of Windows system tools that are used by portable executable including libraries that get dynamically linked when an executable file is effected on a computer or network system and which functions are imported was also learnt.
 
 ---
 # Lab 1-3 
 
 ## Executive Summary
 
-The executable is a malware recognized by virusTotal because it was detected by different antivirus as a malicious software. The file appears to be a packed malware and trying to unpack it with UPX utility tool was not successful. Using the PeID utility tool to open the sample and analyzing the sample goes on further to prove that FSG (a different variant packer)was used in compression of this file. Also opening the file in PEview shows that it is lacking import table and without the import table I am unable to know the functions and linking libraries used by this executable sample when it infects machines or users on a network, Nonetheless, opening the file with Dependency Walker it shows the import table of this executable with two functions namely `LoadLibrary` and `GetProcAddress` that are always associated with any Packed files. This further indicate that this file is packed. In conclusion running the sample using the known tools I know for performing static analysis did not provide any useful information for a host-based indicator or network signature, that can serve as the indicators of compromise, and mitigations required for protection from this malware.
+The executable is a malware recognized by virusTotal because it was detected by different antivirus program(s) on this website as a malicious software. The file appears to be a packed malware and trying to unpack it with UPX utility tool was not successful. Using the PeID utility tool to open the sample and analyzing the sample goes on further to prove that FSG (a different variant packer - a utility tool used to compress a file to hide its content) was used in compression of this file. Also opening the file in PEview shows that it is lacking import table and without the import table I am unable to know the functions and linking libraries used by this executable sample when it infects machines or users on a network, Nonetheless, opening the file with Dependency Walker it shows the import table of this executable with two functions namely `LoadLibrary` and `GetProcAddress` that are always associated with any Packed files. This further indicate that this file is packed. In conclusion running the sample using the known tools I know for performing static analysis did not provide any useful information for a host-based indicator or network signature, that can serve as the indicators of compromise, and also provide mitigation(s) measures required for protection from the infection of this malware to a computer or network systems of victims that gets infected with it.
 
 ## Indicators of Compromise 
 
@@ -18,11 +18,11 @@ The executable is a malware recognized by virusTotal because it was detected by 
 
 ## Evidence
 
-The malware is a portable executable (EXE) and uploading it to VirusTotal antivirus engine sets off dozens of vendors' virus classifiers.
+The malware is a portable executable (EXE) and uploading it to VirusTotal antivirus engines triggers the sample to be a malware by different antivirus database on the website.
 
 Opening the file with PEiD indicates that the file was packed with FSG packer
 
-Using Dependency Walker on the `.EXE`, further revealed that the file is packed because the were two functions present in its import address table that are always with any Portable Executable file that is packed. 
+Using Dependency Walker on the `.EXE`, further revealed that the file is packed because the were two functions present in its import address table that are always associated with any Portable Executable file that is packed. 
 
 ---
 # Lab 1-4
